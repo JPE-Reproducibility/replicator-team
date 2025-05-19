@@ -27,8 +27,7 @@ jobs:
           path: ${{ github.workspace }}
           name: github-pages
 
-      - name: List site files
-        run: ls -R ${{ github.workspace }}
-
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
+        with:
+          artifact_name: github-pages
