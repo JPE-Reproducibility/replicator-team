@@ -13,7 +13,9 @@ on:
 
 jobs:
   deploy:
+    if: github.repository == 'JPE-Reproducibility/replicator-team'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  check-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate new JSON files
+        run: |
+          echo "Checking new JSON files..."
+
+          added_files=$(git diff --diff-filter=A --name-only origin/${{ github.base_ref }} | grep '\.json$' || true)
+
+          if [ -z "$added_files" ]; then
+            echo "No new JSON files to validate."
+            exit 0
+          fi
+
+          for file in $added_files; do
+            echo "Validating $file"
+            jq empty "$file" || (echo "❌ Invalid JSON: $file" && exit 1)
+          done
+
+          echo "✅ All new JSON files are valid."
