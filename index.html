@@ -32,6 +32,7 @@
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
+              <img src="https://github.com/${username}.png" alt="${username} avatar" width="64" height="64" style="border-radius: 50%;"/>
               <div class="emoji">${data.emoji}</div>
               <p><strong>${file.replace('.json', '')}</strong></p>
               <p>${data.introduction}</p>
