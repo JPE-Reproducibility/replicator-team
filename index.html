@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Class Showcase</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    h1 { color: #333; }
+    .card { background: white; border-radius: 10px; padding: 1rem; margin: 1rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .emoji { font-size: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>Class Showcase</h1>
+  <div id="cards"></div>
+
+  <script>
+    async function loadProfiles() {
+      const response = await fetch('_data/');
+      const text = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, 'text/html');
+      const links = Array.from(doc.querySelectorAll('a')).map(a => a.getAttribute('href')).filter(f => f.endsWith('.json'));
+
+      const container = document.getElementById('cards');
+
+      for (let file of links) {
+        const res = await fetch('_data/' + file);
+        const data = await res.json();
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="emoji">${data.emoji}</div>
+          <p><strong>${file.replace('.json', '')}</strong></p>
+          <p>${data.introduction}</p>
+          <p><em>${data.computing}</em></p>
+          <p>${data.institution}</p>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    loadProfiles();
+  </script>
+</body>
+</html>
