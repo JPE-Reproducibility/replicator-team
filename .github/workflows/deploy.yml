@@ -14,11 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Upload site
+
+      - name: List site files
+        run: ls -R ${{ github.workspace }}
+
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
-      - name: Deploy
+          path: ${{ github.workspace }}
+
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
