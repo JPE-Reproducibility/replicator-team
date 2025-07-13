@@ -1,13 +1,6 @@
 {
-<<<<<<< HEAD
-"emoji": ":)"
-"introduction": "Hi, I'm a Phd student in Economic History at Carlos III University of Madrid. Glad to be here learning Git :)",
-"computing": "Stata, R, a bit of Python",
-"institutions": "University of Bologna, Carlos III University of Madrid, University of Lund"
-=======
 "emoji": "😄"
 "introduction": "Hi, here is Simone :) Curious about history and nature. I'm a graduate in Development Economics and a PhD student in Economic History at Universidad Carlos III de Madrid.",
 "computing": "Stata, R, a bit of Python and Matlab",
 "institution": "Carlos III University of Madrid"
->>>>>>> e977242 (Add my intro data)
 }
